@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Autonomous Browser QA Agent</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">Q</span><div><strong>Orbit QA</strong><small>Autonomous browser testing</small></div></div>
+      <div class="side-label">WORKSPACE</div>
+      <a class="nav active" href="#runner"><span>◈</span> Run agent</a>
+      <a class="nav" href="#history"><span>◷</span> Run history</a>
+      <div class="sidebar-bottom"><div class="status-dot"></div><span>Local workspace</span></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div><div class="eyebrow">QUALITY ENGINEERING / BROWSER AGENT</div><h1>Browser QA workspace</h1></div><div class="top-meta"><span class="online"><i></i> Engine ready</span><a href="/docs" target="_blank" rel="noreferrer">API docs ↗</a></div></header>
+      <section class="intro"><div><div class="eyebrow">AGENT-DRIVEN END-TO-END QA</div><h2>Test the experience, not just the code.</h2><p>Describe what should work. The agent inspects the page, runs constrained browser checks, captures evidence, and reports issues.</p></div><div class="intro-icon">✳</div></section>
+      <div class="content-grid">
+        <section class="panel runner-panel" id="runner">
+          <div class="panel-heading"><div><span class="step-tag">01 / CONFIGURE</span><h3>New QA run</h3><p>Choose an approved target and define the outcome to verify.</p></div><span class="sparkle">✦</span></div>
+          <form id="run-form">
+            <label for="title">Run name</label><input id="title" value="Homepage smoke test" maxlength="120" required>
+            <label for="target-url">Target URL</label><div class="input-action"><input id="target-url" type="url" value="http://127.0.0.1:8000/demo" required><button type="button" class="subtle-btn" id="demo-btn">Use demo</button></div>
+            <div class="helper">Only hosts listed in <code>ALLOWED_TARGET_HOSTS</code> can be visited.</div>
+            <label for="objective">What should the agent verify?</label><textarea id="objective" rows="4" maxlength="1200" required>Verify that the demo page loads and displays its main heading.</textarea>
+            <div class="two-col"><div><label for="expected-title">Expected page title <span class="optional">optional</span></label><input id="expected-title" placeholder="e.g. QA Demo Store"></div><div><label for="max-steps">Maximum agent steps</label><select id="max-steps"><option>4</option><option selected>6</option><option>8</option><option>10</option><option>12</option></select></div></div>
+            <label for="api-token">API token <span class="optional">only if configured</span></label><input id="api-token" type="password" autocomplete="off" placeholder="QA_API_TOKEN">
+            <div class="safety-note"><span>⚑</span><div><strong>Safety limits are active</strong><p>The agent cannot submit forms, make purchases, delete records, or navigate outside your allowlist.</p></div></div>
+            <button class="primary-btn" type="submit" id="run-btn"><span>✦</span> Start browser QA run <span class="arrow">→</span></button>
+            <div id="form-status" class="form-status" role="status"></div>
+          </form>
+        </section>
+        <section class="panel report-panel" id="report-panel">
+          <div class="panel-heading"><div><span class="step-tag">02 / EVIDENCE</span><h3>Latest report</h3><p>Execution steps, diagnostics, and reproducible artifacts.</p></div><span class="report-mark">▤</span></div>
+          <div id="empty-report" class="empty-state"><div class="empty-icon">⌁</div><strong>No QA run yet</strong><p>Start a run to see browser activity and findings here.</p></div>
+          <div id="report-content" hidden></div>
+        </section>
+      </div>
+      <section class="panel history-panel" id="history">
+        <div class="panel-heading inline"><div><span class="step-tag">03 / ACTIVITY</span><h3>Recent runs</h3></div><button class="subtle-btn" id="refresh-history">Refresh ↻</button></div>
+        <div id="history-list" class="history-list"><div class="history-empty">No saved runs yet.</div></div>
+      </section>
+      <footer>Orbit QA · Built with FastAPI and Playwright <span>Demo mode uses local synthetic content only.</span></footer>
+    </main>
+  </div>
+  <script src="/static/app.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+services:
+  browser-qa:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      APP_NAME: "Autonomous Browser QA Agent"
+      ENVIRONMENT: "development"
+      DATABASE_PATH: "/app/data/qa_runs.sqlite3"
+      ARTIFACTS_DIR: "/app/artifacts"
+      ALLOWED_TARGET_HOSTS: "${ALLOWED_TARGET_HOSTS:-127.0.0.1,localhost}"
+      ALLOW_PRIVATE_TARGETS: "${ALLOW_PRIVATE_TARGETS:-false}"
+      ALLOW_LOOPBACK_TARGETS: "${ALLOW_LOOPBACK_TARGETS:-true}"
+      BROWSER_HEADLESS: "true"
+      PLANNER_PROVIDER: "mock"
+    volumes:
+      - qa-data:/app/data
+      - qa-artifacts:/app/artifacts
+    restart: unless-stopped
+
+volumes:
+  qa-data:
+  qa-artifacts:

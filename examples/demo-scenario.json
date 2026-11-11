@@ -1,0 +1,7 @@
+{
+  "title": "Demo store homepage smoke test",
+  "target_url": "http://127.0.0.1:8000/demo",
+  "objective": "Verify that the demo page loads and displays its main heading.",
+  "expected_title": "QA Demo Store",
+  "max_steps": 6
+}

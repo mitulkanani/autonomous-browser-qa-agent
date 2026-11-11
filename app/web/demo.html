@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>QA Demo Store</title>
+  <style>
+    body{font-family:Inter,system-ui,sans-serif;margin:0;background:#f5f7fb;color:#172033}
+    header{background:#16233c;color:white;padding:22px 8vw}
+    main{max-width:980px;margin:44px auto;padding:0 24px}
+    .hero,.panel{background:white;border:1px solid #e5e9f1;border-radius:18px;padding:30px;margin-bottom:20px}
+    .pill{display:inline-block;background:#e7f7ef;color:#127344;padding:7px 12px;border-radius:30px;font-size:13px}
+    button{background:#365eea;color:white;border:0;border-radius:9px;padding:12px 16px;cursor:pointer}
+    input{padding:12px;border:1px solid #cbd3e1;border-radius:9px;width:min(360px,90%)}
+    a{color:#365eea} .result{margin-top:16px;color:#127344}
+  </style>
+</head>
+<body>
+  <header><strong>Northstar Demo Store</strong></header>
+  <main>
+    <section class="hero">
+      <span class="pill">Browser QA sandbox</span>
+      <h1>Browser QA Demo Store</h1>
+      <p>This local demo page is designed for safe browser-agent smoke tests.</p>
+      <label for="product-search">Search products</label><br><br>
+      <input id="product-search" placeholder="Search demo products" aria-label="Product search">
+      <button id="search-button" type="button">Search</button>
+      <p id="search-result" class="result" aria-live="polite"></p>
+    </section>
+    <section class="panel">
+      <h2>Featured products</h2>
+      <ul><li>Wireless keyboard</li><li>USB-C hub</li><li>Desk lamp</li></ul>
+      <a href="/demo#details">View demo details</a>
+    </section>
+  </main>
+  <script>
+    document.getElementById('search-button').addEventListener('click', () => {
+      const value = document.getElementById('product-search').value.trim();
+      document.getElementById('search-result').textContent = value
+        ? `Showing demo results for: ${value}`
+        : 'Enter a product name to search.';
+    });
+  </script>
+</body>
+</html>
